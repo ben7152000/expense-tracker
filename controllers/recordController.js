@@ -1,12 +1,30 @@
-// record schema
+// schema
 const Record = require('../models/record')
+const Category = require('../models/category')
 
 // record control
 const recordController = {
 
   // 取得所有紀錄
-  getRecords: (req, res) => {
-    res.send('all records')
+  getRecords: async (req, res) => {
+    try {
+      let totalAmount = 0
+      const userId = req.user._id
+      const categories = await Category.find().lean().exec()
+      const records = await Record.find({ userId }).lean().exec()
+      for (const record of records) {
+        totalAmount += record.amount
+        for (const icon of categories) {
+          if (icon.name === record.category) {
+            record.categoryIcon = icon.icon
+          }
+        }
+      }
+      res.render('../views/records/index', { totalAmount, records })
+    } catch (e) {
+      console.log(e)
+      res.render('../views/error/index')
+    }
   },
 
   // 建立紀錄頁面

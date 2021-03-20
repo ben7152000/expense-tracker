@@ -22,26 +22,21 @@
 
     <!--  header  -->
     {{#if isAuthenticated}}
-      <input type="checkbox" id="menu-control">
-
-      <div class="header">
+      <header>
         <a href="/records" class="logo">Account Book</a>
-        <label for="menu-control" class="menu-btn">
-          <span>menu</span>
-        </label>
-
         <div class="nav">
           <span>
             {{#if isAuthenticated}}
-              {{ user.name}}'S
+              {{ user.name}}
             {{/if}}
           </span>
           <a href="/records">Home</a>
           <a href="/users/logout">Logout</a>
         </div>
-      </div>
+      </header>
     {{/if}}
     <!--  header end  -->
+
 
     {{{ body }}}
 
