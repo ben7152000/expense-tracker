@@ -29,12 +29,28 @@ const recordController = {
 
   // 建立紀錄頁面
   createRecordPage: (req, res) => {
-    res.send('create record')
+    res.render('../views/records/create')
   },
 
   // 建立紀錄資料
-  createRecord: (req, res) => {
-
+  createRecord: async (req, res) => {
+    const userId = req.user._id
+    const { Name, Date, Category, Amount } = req.body
+    const [category, categoryIcon] = Category.split('/')
+    try {
+      await Record.create({
+        name: Name,
+        date: Date,
+        category,
+        categoryIcon,
+        amount: Number(Amount),
+        userId
+      })
+      res.redirect('/records')
+    } catch (e) {
+      console.log(e)
+      res.render('../views/error/index')
+    }
   },
 
   // 編輯紀錄頁面
@@ -48,8 +64,17 @@ const recordController = {
   },
 
   // 刪除紀錄
-  deleteRecord: (req, res) => {
-
+  deleteRecord: async (req, res) => {
+    const userId = req.user._id
+    const _id = req.params.id
+    try {
+      const record = await Record.findOne({ userId, _id })
+      record.remove()
+      res.redirect('/records')
+    } catch (e) {
+      console.log(e)
+      res.render('../views/error/index')
+    }
   }
 }
 
