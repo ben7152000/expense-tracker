@@ -1,0 +1,21 @@
+<section class="list">
+  <div class="total">NT ${{ totalAmount }}</div>
+  <a href="/records/create" class="new">+</a>
+  <div class="container">
+    {{#each record}}
+      <div class="group">
+        <div class="category"><i class="{{  this.categoryIcon  }}"></i></div>
+        <div class="name">{{ this.name  }}</div>
+        <div class="date">{{ this.date  }}</div>
+        <div class="amount">${{ this.amount }}</div>
+        <div class="btn">
+          <a href="/records/{{ this._id }}/edit"><i class="fas fa-edit"></i></a>
+          <form action="/records/{{ this._id }}/delete" method="POST"
+            class="delete">
+            <button id="delete"><i class="fas fa-trash-alt"></i></button>
+          </form>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</section>

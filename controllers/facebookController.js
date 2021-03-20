@@ -7,7 +7,7 @@ const facebookController = {
     passport.authenticate('facebook', { scope: ['email', 'public_profile'] }),
   facebookCallback:
     passport.authenticate('facebook', {
-      successRedirect: '/restaurants',
+      successRedirect: '/records',
       failureRedirect: '/users/login'
     })
 }

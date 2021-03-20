@@ -1,0 +1,516 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+body {
+  background-color: #eee;
+}
+
+header {
+  background-color: #313131;
+  width: 100%;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 5px solid #FFCE00;
+}
+
+header a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 50px;
+  letter-spacing: 1px;
+  font-family: 'Poppins';
+}
+
+@media screen and (max-width: 576px) {
+  header a {
+    font-size: 30px;
+  }
+}
+
+.list {
+  width: 100%;
+  height: 100%;
+}
+
+.list .total {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #ffce00;
+  width: 300px;
+  padding: 10px 15px;
+  margin: 50px auto;
+  border-radius: 50px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.list form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list form select {
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #313131;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 1px;
+  padding-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.list form select:focus {
+  border: none;
+  outline: none;
+}
+
+.list form input {
+  width: 60px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #313131;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: color .5s ease-in-out;
+  transition: color .5s ease-in-out;
+}
+
+.list form input:hover {
+  color: #ffce00;
+}
+
+.list form input:focus {
+  border: none;
+  outline: none;
+}
+
+.list .new {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-transition: color 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out, transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  text-decoration: none;
+}
+
+.list .new:hover {
+  color: #ffce00;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.list .new:focus {
+  border: none;
+  outline: none;
+}
+
+.list .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list .container .group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 700px;
+  max-width: 100%;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.list .container .group .category {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.list .container .group .category i {
+  font-size: 20px;
+  line-height: 40px;
+  color: #333;
+}
+
+.list .container .group .name {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #333;
+  width: 100px;
+}
+
+.list .container .group .date,
+.list .container .group .amount {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #333;
+  width: 150px;
+}
+
+.list .container .group .btn {
+  width: 80px;
+  max-width: 100%;
+  background-color: #fff;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list .container .group .btn a {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px 0 0;
+  padding: 0;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #fff;
+  color: #333;
+  -webkit-transition: color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+}
+
+.list .container .group .btn a i {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.list .container .group .btn a:hover {
+  color: #0585ee;
+}
+
+.list .container .group .btn a:focus {
+  border: none;
+  outline: none;
+}
+
+.list .container .group .btn .delete {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+}
+
+.list .container .group .btn .delete button {
+  width: 100%;
+  text-align: center;
+  border: none;
+  -webkit-transition: color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+  cursor: pointer;
+  background-color: #fff;
+  color: #333;
+}
+
+.list .container .group .btn .delete button:hover {
+  color: #e4400f;
+}
+
+.list .container .group .btn .delete button i {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.list .container .group .btn .delete button:focus {
+  border: none;
+  outline: none;
+}
+
+@media screen and (max-width: 576px) {
+  .list .total {
+    font-size: 30px;
+    width: 250px;
+  }
+  .list .container .group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 30px 15px;
+  }
+  .list .container .group .category {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+  .list .container .group .category i {
+    font-size: 30px;
+    line-height: 60px;
+  }
+  .list .container .group .name,
+  .list .container .group .date,
+  .list .container .group .amount {
+    font-size: 25px;
+    margin-bottom: 20px;
+    width: 200px;
+    text-align: center;
+  }
+  .list .container .group .btn {
+    width: 100px;
+  }
+  .list .container .group .btn a {
+    margin: 0 15px 0 0;
+  }
+  .list .container .group .btn a i {
+    font-size: 30px;
+  }
+  .list .container .group .btn .delete button i {
+    font-size: 30px;
+  }
+}
+
+section {
+  width: 100%;
+  height: 100%;
+}
+
+section .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section .container h2 {
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 50px;
+  border-bottom: 4px solid #333;
+  color: #333;
+}
+
+section .container form {
+  background-color: #888;
+  border-radius: 10px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 500px;
+}
+
+section .container form .group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 30px;
+}
+
+section .container form .group label {
+  color: #111;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-right: 10px;
+  line-height: 50px;
+}
+
+section .container form .group input, section .container form .group select {
+  width: 250px;
+  max-width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+section .container form .group input:focus, section .container form .group select:focus {
+  outline: none;
+  border: none;
+}
+
+section .container form .btn {
+  height: 50px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background-color: #FFCE00;
+  border: none;
+  border-radius: 10px;
+  color: #333;
+  cursor: pointer;
+  margin: 20px auto 0;
+  width: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: color .3s ease-in-out, background-color .5s ease-in-out;
+  transition: color .3s ease-in-out, background-color .5s ease-in-out;
+}
+
+section .container form .btn:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+section .container form .btn:focus {
+  border: none;
+  outline: none;
+}
+
+section .container a {
+  margin-top: 50px;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #000;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50px;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+}
+
+section .container a:hover {
+  color: #FFCE00;
+}
+
+@media screen and (max-width: 576px) {
+  section .container h2 {
+    font-size: 25px;
+  }
+  section .container form .group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  section .container form .group label {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  section .container form .group input, section .container form .group select {
+    font-size: 14px;
+  }
+  section .container form .btn {
+    margin-top: 40px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+  }
+  section .container a {
+    font-size: 20px;
+    height: 35px;
+    line-height: 35px;
+  }
+}
+/*# sourceMappingURL=main.css.map */

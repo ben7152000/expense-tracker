@@ -1,0 +1,40 @@
+<section
+  class="min-h-screen flex items-center justify-center bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <img class="mx-auto h-12 w-auto" src="../image/AC.png" alt="logo" />
+      <h1
+        class="mt-6 text-center text-3xl font-extrabold text-gray-900 tracking-wide">
+        Login</h1>
+    </div>
+    {{> message}}
+    <form action="/users/login" method="POST" class="mt-8 space-y-6">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="email"
+            class="block my-2 text-md font-medium">Email</label>
+          <input type="text" name="email" id="email" placeholder="email"
+            class="appearance-none rounded-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm">
+        </div>
+        <div>
+          <label for="password"
+            class="block my-2 text-md font-medium">Password</label>
+          <input type="password" name="password" id="password"
+            placeholder="password"
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm">
+        </div>
+      </div>
+      <div>
+        <input type="submit" value="login"
+          class="appearance-none w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-sm font-medium text-white bg-gray-500 cursor-pointer hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transform ease-in-out duration-500">
+        <a href="/auth/facebook"
+          class="appearance-none block w-full flex justify-center py-2 px-4 mt-2 border border-transparent rounded-md text-sm font-medium text-white bg-blue-500 cursor-pointer hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform ease-in-out duration-500">Facebook</a>
+        <a href="/users/register"
+          class="block my-3 text-center text-blue-700 text-sm font-medium">Register</a>
+        <p class="mt-5 mb-3 text-center text-sm font-medium">
+          &copy; 2021-2022
+        </p>
+      </div>
+    </form>
+  </div>
+</section>

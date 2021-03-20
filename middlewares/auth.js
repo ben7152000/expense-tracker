@@ -5,7 +5,7 @@ const checkAuthenticator = (req, res, next) => {
 }
 
 const checkNotAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) return res.redirect('/restaurants')
+  if (req.isAuthenticated()) return res.redirect('/records')
   next()
 }
 

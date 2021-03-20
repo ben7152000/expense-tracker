@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+
+    <!--  Main Css  -->
+    <link rel="stylesheet" href="../../style/main.css">
+
+    <!--  Tailwind CSS  -->
+    <link rel="stylesheet" href="../tailwind.css">
+
+    <!--  Font Awesome  -->
+    <link rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css' />
+
+  </head>
+
+  <body>
+
+    <!--  header  -->
+    {{#if isAuthenticated}}
+      <input type="checkbox" id="menu-control">
+
+      <div class="header">
+        <a href="/records" class="logo">Account Book</a>
+        <label for="menu-control" class="menu-btn">
+          <span>menu</span>
+        </label>
+
+        <div class="nav">
+          <span>
+            {{#if isAuthenticated}}
+              {{ user.name}}'S
+            {{/if}}
+          </span>
+          <a href="/records">Home</a>
+          <a href="/users/logout">Logout</a>
+        </div>
+      </div>
+    {{/if}}
+    <!--  header end  -->
+
+    {{{ body }}}
+
+    <!--  Main Js  -->
+    <script src="../../js/main.js"></script>
+
+  </body>
+
+</html>

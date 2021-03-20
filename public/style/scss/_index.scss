@@ -1,0 +1,277 @@
+.list {
+  width: 100%;
+  height: 100%;
+
+  .total {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #ffce00;
+    width: 300px;
+    padding: 10px 15px;
+    margin: 50px auto;
+    border-radius: 50px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    select {
+      height: 40px;
+      border: none;
+      border-radius: 10px;
+      background-color: #313131;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 1px;
+      padding-left: 5px;
+      display: flex;
+      justify-content: center;
+      width: 100px;
+      margin-right: 10px;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    input {
+      width: 60px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: #313131;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: center;
+      transition: color .5s ease-in-out;
+
+      &:hover {
+        color: #ffce00;
+      }
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+  .new {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
+    text-decoration: none;
+
+    &:hover {
+      color: #ffce00;
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 700px;
+      max-width: 100%;
+      background-color: #fff;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+
+      .category {
+        width: 40px;
+        height: 40px;
+        background-color: #ccc;
+        border-radius: 50%;
+        text-align: center;
+
+        i {
+          font-size: 20px;
+          line-height: 40px;
+          color: #333;
+        }
+      }
+
+      .name {
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: #333;
+        width: 100px;
+      }
+
+      .date,
+      .amount {
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        color: #333;
+        width: 150px;
+      }
+
+      .btn {
+        width: 80px;
+        max-width: 100%;
+        background-color: #fff;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+          width: 30px;
+          height: 30px;
+          margin: 0 5px 0 0;
+          padding: 0;
+          line-height: 30px;
+          text-align: center;
+          text-decoration: none;
+          background-color: #fff;
+          color: #333;
+          transition: color 0.5s ease-in-out;
+
+          i {
+            font-size: 20px;
+            line-height: 30px;
+          }
+
+          &:hover {
+            color: rgb(5, 133, 238);
+          }
+
+          &:focus {
+            border: none;
+            outline: none;
+          }
+        }
+
+        .delete {
+          width: 30px;
+          height: 30px;
+          padding: 0;
+          margin: 0;
+          background-color: #fff;
+
+          button {
+            width: 100%;
+            text-align: center;
+            border: none;
+            transition: color 0.5s ease-in-out;
+            cursor: pointer;
+            background-color: #fff;
+            color: #333;
+
+            &:hover {
+              color: rgb(228, 64, 15);
+            }
+
+            i {
+              font-size: 20px;
+              line-height: 30px;
+            }
+
+            &:focus {
+              border: none;
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .list {
+    .total {
+      font-size: 30px;
+      width: 250px;
+    }
+
+    .container {
+      .group {
+        flex-direction: column;
+        padding: 30px 15px;
+
+        .category {
+          width: 60px;
+          height: 60px;
+          margin-bottom: 20px;
+
+          i {
+            font-size: 30px;
+            line-height: 60px;
+          }
+        }
+
+        .name,
+        .date,
+        .amount {
+          font-size: 25px;
+          margin-bottom: 20px;
+          width: 200px;
+          text-align: center;
+        }
+
+        .btn {
+          width: 100px;
+
+          a {
+            margin: 0 15px 0 0;
+
+            i {
+              font-size: 30px;
+            }
+          }
+
+          .delete {
+            button {
+              i {
+                font-size: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

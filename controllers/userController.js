@@ -12,7 +12,7 @@ const userController = {
   // 登入檢查
   login:
     passport.authenticate('local', {
-      successRedirect: '/restaurants',
+      successRedirect: '/records',
       failureRedirect: '/users/login'
     }),
 
