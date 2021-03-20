@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "name": "food",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name": "home",
+      "icon": "fas fa-home"
+    },
+    {
+      "name": "traffic",
+      "icon": "fas fa-shuttle-van"
+    },
+    {
+      "name": "entertainment",
+      "icon": "fas fa-grin-beam"
+    },
+    {
+      "name": "other",
+      "icon": "fas fa-pen"
+    }
+  ]
+}
