@@ -54,13 +54,37 @@ const recordController = {
   },
 
   // 編輯紀錄頁面
-  editRecordPage: (req, res) => {
-    res.send('edit record')
+  editRecordPage: async (req, res) => {
+    const userId = req.user._id
+    const _id = req.params.id
+    try {
+      const record = await Record.findOne({ userId, _id }).lean().exec()
+      res.render('../views/records/edit', { record })
+    } catch (e) {
+      console.log(e)
+      res.render('../views/error/index')
+    }
   },
 
   // 編輯紀錄資料
-  editRecord: (req, res) => {
-
+  editRecord: async (req, res) => {
+    const userId = req.user._id
+    const _id = req.params.id
+    const { Name, Date, Category, Amount } = req.body
+    const [category, categoryIcon] = Category.split('/')
+    try {
+      const record = await Record.findOne({ userId, _id })
+      record.name = Name
+      record.date = Date
+      record.category = category
+      record.categoryIcon = categoryIcon
+      record.amount = Amount
+      record.save()
+      res.redirect('/records')
+    } catch (e) {
+      console.log(e)
+      res.render('../views/error/index')
+    }
   },
 
   // 刪除紀錄

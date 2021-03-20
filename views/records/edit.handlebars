@@ -1,24 +1,16 @@
 <section>
   <div class="container">
-
-    <!--  Title  -->
     <h2>請編輯支出明細</h2>
     <form action="/records/{{  record._id  }}/edit" method="POST">
-
-      <!--  Name  -->
       <div class="group">
         <label>名稱 : </label>
         <input type="text" name="Name" placeholder="breakfast..."
           value="{{  record.name  }}" required>
       </div>
-
-      <!--  Date  -->
       <div class="group">
         <label>日期 : </label>
         <input type="date" name="Date" value="{{  record.date  }}" required>
       </div>
-
-      <!--  Category  -->
       <div class="group">
         <label>種類 : </label>
         <select name="Category" required>
@@ -34,20 +26,13 @@
             )}} selected {{/if}}>其他</option>
         </select>
       </div>
-
-      <!--  Amount  -->
       <div class="group">
         <label>金額 : </label>
         <input type="number" name="Amount" placeholder="300"
           value="{{  record.amount  }}" required>
       </div>
-
-      <!--  Submit  -->
       <input type="submit" value="確認更改" class="btn">
     </form>
-
-    <!--  Back  -->
-    <a href="/">退回</a>
-
+    <a href="/records">退回</a>
   </div>
 </section>

@@ -27,8 +27,8 @@ app.use(cors())
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }))
 
 // setting express-handlebars
-app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.engine('handlebars', handlebars({ defaultLayout: 'main', helpers: { same: (a, b) => a === b } }))
 app.use(express.static('public'))
 
 // passport
