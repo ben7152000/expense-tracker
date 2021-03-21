@@ -18,6 +18,8 @@
 14. Passport-Facebook : v3.0.0
 15. Passport-local : v1.0.0
 16. Tailwindcss : v2.0.3
+17. Passport-Google-Oauth20 : v2.0.0
+18. Date-Fns : v2.19.0
 
 ## 安裝與執行步驟 (Installation and Execution)
 
@@ -51,5 +53,14 @@
 2. 按下 + 能夠新增一個支出清單
 3. 按下 筆 能夠重新編輯支出清單
 4. 按下 垃圾桶 能夠刪除一個支出清單
-5. 可利用篩選功能選擇出相同種類清單
-6. 首頁有當下所有清單的總額顯示
+5. 可利用篩選功能選擇出相同類別清單
+6. 可利用篩選功能選擇出相同月份清單
+7. 首頁有當下所有清單的總額顯示
+8. 可利用 facebook 登入
+9. 可利用 google 登入
+10. 可自行註冊帳號進行登入
+
+## 測試帳號 (Accounts)
+
+1. email: user1@example.com password: 12345678
+2. email: user2@example.com password: 12345678
