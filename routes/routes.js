@@ -9,7 +9,7 @@ const facebookController = require('../controllers/facebookController')
 const googleController = require('../controllers/googleController')
 
 // middleware
-const { checkAuthenticator, checkNotAuthenticated } = require('../middlewares/auth')
+const { checkAuthenticator, checkNotAuthenticated, checkAccount } = require('../middlewares/auth')
 
 // home
 router.get('/', (req, res) => res.redirect('/users/login'))
@@ -25,10 +25,10 @@ router.get('/records/filter', checkAuthenticator, recordController.filterRecord)
 router.get('/records/month', checkAuthenticator, recordController.monthRecord)
 
 // users
-router.get('/users/login', checkNotAuthenticated, userController.loginPage)
-router.post('/users/login', checkNotAuthenticated, userController.login)
-router.get('/users/register', checkNotAuthenticated, userController.registerPage)
-router.post('/users/register', checkNotAuthenticated, userController.register)
+router.get('/users/login', userController.loginPage, checkNotAuthenticated)
+router.post('/users/login', checkAccount, userController.login)
+router.get('/users/register', userController.registerPage)
+router.post('/users/register', userController.register)
 router.get('/users/logout', userController.logout)
 
 // facebook

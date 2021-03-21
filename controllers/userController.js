@@ -10,11 +10,12 @@ const userController = {
   },
 
   // 登入檢查
-  login:
+  login: (req, res) => {
     passport.authenticate('local', {
       successRedirect: '/records',
       failureRedirect: '/users/login'
-    }),
+    })(req, res)
+  },
 
   // 註冊頁面
   registerPage: (req, res) => {

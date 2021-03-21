@@ -13,21 +13,33 @@ module.exports = app => {
   app.use(passport.session())
 
   // setting login strategy
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ email })
       .then(user => {
         if (!user) {
-          return done(null, false, { message: 'That email is not registered!' })
+          return done(null, false, req.flash('warning_msg', '信箱未註冊'))
         }
-        return bcrypt.compare(password, user.password).then(isMatch => {
-          if (!isMatch) {
-            return done(null, false, { message: 'Email or Password incorrect.' })
-          }
-          return done(null, user)
-        })
+        return bcrypt.compare(password, user.password)
+          .then(isMatch => {
+            if (!isMatch) {
+              return done(null, false, req.flash('warning_msg', '信箱或密碼不正確'))
+            }
+            return done(null, user)
+          })
       })
       .catch(err => done(err, false))
   }))
+
+  // setting serialize-user and deserialize-user
+  passport.serializeUser((user, done) => {
+    done(null, user.id)
+  })
+  passport.deserializeUser((id, done) => {
+    User.findById(id)
+      .lean()
+      .then(user => done(null, user))
+      .catch(err => done(err, null))
+  })
 
   // setting facebook
   passport.use(new FacebookStrategy({
@@ -80,17 +92,5 @@ module.exports = app => {
           .then(user => done(null, user))
           .catch(err => done(err, false))
       })
-  }
-  ))
-
-  // setting serialize-user and deserialize-user
-  passport.serializeUser((user, done) => {
-    done(null, user.id)
-  })
-  passport.deserializeUser((id, done) => {
-    User.findById(id)
-      .lean()
-      .then(user => done(null, user))
-      .catch(err => done(err, null))
-  })
+  }))
 }
