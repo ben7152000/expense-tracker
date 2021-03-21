@@ -6,6 +6,7 @@ const router = express.Router()
 const userController = require('../controllers/userController')
 const recordController = require('../controllers/recordController')
 const facebookController = require('../controllers/facebookController')
+const googleController = require('../controllers/googleController')
 
 // middleware
 const { checkAuthenticator, checkNotAuthenticated } = require('../middlewares/auth')
@@ -33,5 +34,9 @@ router.get('/users/logout', userController.logout)
 // facebook
 router.get('/auth/facebook', checkNotAuthenticated, facebookController.facebookAuthenticator)
 router.get('/auth/facebook/callback', checkNotAuthenticated, facebookController.facebookCallback)
+
+// google
+router.get('/auth/google', checkNotAuthenticated, googleController.googleAuthenticator)
+router.get('/auth/google/callback', checkNotAuthenticated, googleController.googleCallback)
 
 module.exports = router

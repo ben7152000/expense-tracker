@@ -1,6 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
+const GoogleStrategy = require('passport-google-oauth20').Strategy
 const bcrypt = require('bcryptjs')
 
 const User = require('../models/user')
@@ -36,7 +37,7 @@ module.exports = app => {
     profileFields: ['email', 'displayName']
   }, (accessToken, refreshToken, profile, done) => {
     const { name, email } = profile._json
-    User.findOne({ email })
+    User.findOne({ from: 'facebook' })
       .then(user => {
         if (user) return done(null, user)
         const randomPassword = Math.random().toString(36).slice(-8)
@@ -46,12 +47,41 @@ module.exports = app => {
           .then(hash => User.create({
             name,
             email,
-            password: hash
+            password: hash,
+            from: 'facebook'
           }))
           .then(user => done(null, user))
           .catch(err => done(err, false))
       })
   }))
+
+  // setting google
+  passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_ID,
+    clientSecret: process.env.GOOGLE_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK,
+    profileFields: ['email']
+  }, (accessToken, refreshToken, profile, done) => {
+    const { email } = profile._json
+    const name = email.split('@')[0]
+    User.findOne({ from: 'google' })
+      .then(user => {
+        if (user) return done(null, user)
+        const randomPassword = Math.random().toString(36).slice(-8)
+        bcrypt
+          .genSalt(10)
+          .then(salt => bcrypt.hash(randomPassword, salt))
+          .then(hash => User.create({
+            name,
+            email,
+            password: hash,
+            from: 'google'
+          }))
+          .then(user => done(null, user))
+          .catch(err => done(err, false))
+      })
+  }
+  ))
 
   // setting serialize-user and deserialize-user
   passport.serializeUser((user, done) => {
