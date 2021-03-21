@@ -36,7 +36,7 @@ const recordController = {
   // 建立紀錄資料
   createRecord: async (req, res) => {
     const userId = req.user._id
-    const { Name, Date, Category, Amount } = req.body
+    const { Name, Date, Category, Merchant, Amount } = req.body
     const [category, categoryIcon] = Category.split('/')
     try {
       await Record.create({
@@ -44,6 +44,7 @@ const recordController = {
         date: Date,
         category,
         categoryIcon,
+        merchant: Merchant,
         amount: Number(Amount),
         userId
       })
@@ -71,7 +72,7 @@ const recordController = {
   editRecord: async (req, res) => {
     const userId = req.user._id
     const _id = req.params.id
-    const { Name, Date, Category, Amount } = req.body
+    const { Name, Date, Category, Merchant, Amount } = req.body
     const [category, categoryIcon] = Category.split('/')
     try {
       const record = await Record.findOne({ userId, _id })
@@ -79,6 +80,7 @@ const recordController = {
       record.date = Date
       record.category = category
       record.categoryIcon = categoryIcon
+      record.merchant = Merchant
       record.amount = Amount
       record.save()
       res.redirect('/records')

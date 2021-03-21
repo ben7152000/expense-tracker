@@ -55,7 +55,8 @@
     {{#each records}}
       <div class="group">
         <div class="category"><i class="{{  this.categoryIcon  }}"></i></div>
-        <div class="name">{{ this.name }}</div>
+        <div class="name text-center">{{ this.name }}<br />({{ this.merchant }})
+        </div>
         <div class="date">{{ this.date }}</div>
         <div class="amount">${{ this.amount }}</div>
         <div class="btn">
