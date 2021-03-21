@@ -1,22 +1,56 @@
 <section class="list">
   <div class="total">NT ${{ totalAmount }}</div>
   <a href="/records/create" class="new">+</a>
-  <form action="/records/filter">
-    <select name="filter" onchange="this.form.submit()">
-      <option value="all">全部</option>
-      <option value="home" {{#if (same filter 'home' )}} selected {{/if}}>住宿
-      </option>
-      <option value="traffic" {{#if (same filter 'traffic' )}} selected {{/if}}>
-        交通
-      </option>
-      <option value="entertainment" {{#if (same filter 'entertainment' )}}
-        selected {{/if}}>娛樂</option>
-      <option value="food" {{#if (same filter 'food' )}} selected {{/if}}>飲食
-      </option>
-      <option value="other" {{#if (same filter 'other' )}} selected {{/if}}>其他
-      </option>
-    </select>
-  </form>
+  <div class="mx-auto flex justify-center items-center">
+    <label class="text-2xl text-gray-700 font-semibold mr-2">類別 :</label>
+    <form action="/records/filter">
+      <select name="filter" onchange="this.form.submit()">
+        <option value="all">全部</option>
+        <option value="home" {{#if (same filter 'home' )}} selected {{/if}}>住宿
+        </option>
+        <option value="traffic" {{#if (same filter 'traffic' )}} selected
+          {{/if}}>
+          交通
+        </option>
+        <option value="entertainment" {{#if (same filter 'entertainment' )}}
+          selected {{/if}}>娛樂</option>
+        <option value="food" {{#if (same filter 'food' )}} selected {{/if}}>飲食
+        </option>
+        <option value="other" {{#if (same filter 'other' )}} selected {{/if}}>其他
+        </option>
+      </select>
+    </form>
+    <label class="text-2xl text-gray-700 font-semibold mr-2">月份 :</label>
+    <form action="/records/month">
+      <select name="month" onchange="this.form.submit()">
+        <option value="all">全部</option>
+        <option value="01" {{#if (same month '01' )}} selected {{/if}}>一月
+        </option>
+        <option value="02" {{#if (same month '02' )}} selected {{/if}}>二月
+        </option>
+        <option value="03" {{#if (same month '03' )}} selected {{/if}}>三月
+        </option>
+        <option value="04" {{#if (same month '04' )}} selected {{/if}}>四月
+        </option>
+        <option value="05" {{#if (same month '05' )}} selected {{/if}}>五月
+        </option>
+        <option value="06" {{#if (same month '06' )}} selected {{/if}}>六月
+        </option>
+        <option value="07" {{#if (same month '07' )}} selected {{/if}}>七月
+        </option>
+        <option value="08" {{#if (same month '08' )}} selected {{/if}}>八月
+        </option>
+        <option value="09" {{#if (same month '09' )}} selected {{/if}}>九月
+        </option>
+        <option value="10" {{#if (same month '10' )}} selected {{/if}}>十月
+        </option>
+        <option value="11" {{#if (same month '11' )}} selected {{/if}}>十一月
+        </option>
+        <option value="12" {{#if (same month '12' )}} selected {{/if}}>十二月
+        </option>
+      </select>
+    </form>
+  </div>
   <div class="container">
     {{#each records}}
       <div class="group">

@@ -2,6 +2,9 @@
 const Record = require('../models/record')
 const Category = require('../models/category')
 
+// utils
+const { dateFormat } = require('../utils/dateformat')
+
 // record control
 const recordController = {
 
@@ -15,9 +18,7 @@ const recordController = {
       for (const record of records) {
         totalAmount += record.amount
         for (const icon of categories) {
-          if (icon.name === record.category) {
-            record.categoryIcon = icon.icon
-          }
+          if (icon.name === record.category) record.categoryIcon = icon.icon
         }
       }
       res.render('../views/records/index', { totalAmount, records })
@@ -108,17 +109,42 @@ const recordController = {
     const filter = req.query.filter
     try {
       const categories = await Category.find().lean().exec()
-      if (filter === 'all') { return res.redirect('/records') }
+      if (filter === 'all') return res.redirect('/records')
       const records = await Record.find({ category: filter, userId }).lean().exec()
       for (const record of records) {
         totalAmount += record.amount
         for (const icon of categories) {
-          if (icon.name === record.category) {
-            record.categoryIcon = icon.icon
-          }
+          if (icon.name === record.category) record.categoryIcon = icon.icon
         }
       }
       res.render('../views/records/index', { totalAmount, records, filter })
+    } catch (e) {
+      console.log(e)
+      res.render('../views/error/index')
+    }
+  },
+
+  // 月份篩選
+  monthRecord: async (req, res) => {
+    let totalAmount = 0
+    const userId = req.user._id
+    const month = req.query.month
+    const newRecords = []
+    try {
+      const categories = await Category.find().lean().exec()
+      if (month === 'all') return res.redirect('/records')
+      const records = await Record.find({ userId }).lean().exec()
+      for (const record of records) {
+        const newDate = dateFormat(record.date)
+        if (month === newDate) {
+          totalAmount += record.amount
+          for (const icon of categories) {
+            if (icon.name === record.category) record.categoryIcon = icon.icon
+          }
+          newRecords.push(record)
+        }
+      }
+      res.render('../views/records/index', { totalAmount, records: newRecords, month })
     } catch (e) {
       console.log(e)
       res.render('../views/error/index')

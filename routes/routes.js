@@ -21,6 +21,7 @@ router.get('/records/:id/edit', checkAuthenticator, recordController.editRecordP
 router.post('/records/:id/edit', checkAuthenticator, recordController.editRecord)
 router.post('/records/:id/delete', checkAuthenticator, recordController.deleteRecord)
 router.get('/records/filter', checkAuthenticator, recordController.filterRecord)
+router.get('/records/month', checkAuthenticator, recordController.monthRecord)
 
 // users
 router.get('/users/login', checkNotAuthenticated, userController.loginPage)
