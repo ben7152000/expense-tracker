@@ -1,6 +1,22 @@
 <section class="list">
   <div class="total">NT ${{ totalAmount }}</div>
   <a href="/records/create" class="new">+</a>
+  <form action="/records/filter">
+    <select name="filter" onchange="this.form.submit()">
+      <option value="all">全部</option>
+      <option value="home" {{#if (same filter 'home' )}} selected {{/if}}>住宿
+      </option>
+      <option value="traffic" {{#if (same filter 'traffic' )}} selected {{/if}}>
+        交通
+      </option>
+      <option value="entertainment" {{#if (same filter 'entertainment' )}}
+        selected {{/if}}>娛樂</option>
+      <option value="food" {{#if (same filter 'food' )}} selected {{/if}}>飲食
+      </option>
+      <option value="other" {{#if (same filter 'other' )}} selected {{/if}}>其他
+      </option>
+    </select>
+  </form>
   <div class="container">
     {{#each records}}
       <div class="group">

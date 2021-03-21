@@ -7,9 +7,9 @@ const recordController = {
 
   // 取得所有紀錄
   getRecords: async (req, res) => {
+    let totalAmount = 0
+    const userId = req.user._id
     try {
-      let totalAmount = 0
-      const userId = req.user._id
       const categories = await Category.find().lean().exec()
       const records = await Record.find({ userId }).lean().exec()
       for (const record of records) {
@@ -95,6 +95,30 @@ const recordController = {
       const record = await Record.findOne({ userId, _id })
       record.remove()
       res.redirect('/records')
+    } catch (e) {
+      console.log(e)
+      res.render('../views/error/index')
+    }
+  },
+
+  // 類別篩選
+  filterRecord: async (req, res) => {
+    let totalAmount = 0
+    const userId = req.user._id
+    const filter = req.query.filter
+    try {
+      const categories = await Category.find().lean().exec()
+      if (filter === 'all') { return res.redirect('/records') }
+      const records = await Record.find({ category: filter, userId }).lean().exec()
+      for (const record of records) {
+        totalAmount += record.amount
+        for (const icon of categories) {
+          if (icon.name === record.category) {
+            record.categoryIcon = icon.icon
+          }
+        }
+      }
+      res.render('../views/records/index', { totalAmount, records, filter })
     } catch (e) {
       console.log(e)
       res.render('../views/error/index')

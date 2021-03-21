@@ -20,6 +20,7 @@ router.post('/records/create', checkAuthenticator, recordController.createRecord
 router.get('/records/:id/edit', checkAuthenticator, recordController.editRecordPage)
 router.post('/records/:id/edit', checkAuthenticator, recordController.editRecord)
 router.post('/records/:id/delete', checkAuthenticator, recordController.deleteRecord)
+router.get('/records/filter', checkAuthenticator, recordController.filterRecord)
 
 // users
 router.get('/users/login', checkNotAuthenticated, userController.loginPage)
