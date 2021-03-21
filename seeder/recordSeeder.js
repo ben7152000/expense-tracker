@@ -17,11 +17,11 @@ db.once('open', () => {
       const salt = await bcrypt.genSalt(10)
       const hashPassword = await bcrypt.hash(user.password, salt)
       const userSeeder = await User.create({ email: user.email, password: hashPassword })
-      Array.from({ length: 3 }, (v, i) => Record.create({ ...record[(i + (index * 3))], userId: userSeeder._id }))
-      const recordSeeder = await Record.find()
-      if (recordSeeder.length === 3) process.exit()
+      Promise.all(Array.from({ length: 3 }, (v, i) => Record.create({ ...record[(i + (index * 3))], userId: userSeeder._id })))
+        .then(() => process.exit())
     } catch (e) {
       console.log(e)
+      process.exit()
     }
   })
   console.log('Record and User seeders are done')

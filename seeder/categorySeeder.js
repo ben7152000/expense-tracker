@@ -5,6 +5,6 @@ const category = require('./category.json').results
 
 db.once('open', () => {
   console.log('mongodb connected !!')
-  Category.create(category).then(() => db.close())
+  Category.create(category).then(() => process.exit())
   console.log('Category seeder is done')
 })
