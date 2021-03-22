@@ -4,24 +4,23 @@
   <div class="mx-auto flex justify-center items-center">
     <label class="text-2xl text-gray-700 font-semibold mr-2">類別 :</label>
     <form action="/records/filter">
-      <select name="filter" onchange="this.form.submit()">
+      <select name="category" onchange="this.form.submit()">
         <option value="all">全部</option>
-        <option value="home" {{#if (same filter 'home' )}} selected {{/if}}>住宿
+        <option value="home" {{#if (same category 'home' )}} selected {{/if}}>住宿
         </option>
-        <option value="traffic" {{#if (same filter 'traffic' )}} selected
+        <option value="traffic" {{#if (same category 'traffic' )}} selected
           {{/if}}>
           交通
         </option>
-        <option value="entertainment" {{#if (same filter 'entertainment' )}}
+        <option value="entertainment" {{#if (same category 'entertainment' )}}
           selected {{/if}}>娛樂</option>
-        <option value="food" {{#if (same filter 'food' )}} selected {{/if}}>飲食
+        <option value="food" {{#if (same category 'food' )}} selected {{/if}}>飲食
         </option>
-        <option value="other" {{#if (same filter 'other' )}} selected {{/if}}>其他
+        <option value="other" {{#if (same category 'other' )}} selected {{/if}}>
+          其他
         </option>
       </select>
-    </form>
-    <label class="text-2xl text-gray-700 font-semibold mr-2">月份 :</label>
-    <form action="/records/month">
+      <label class="text-2xl text-gray-700 font-semibold mr-2">月份 :</label>
       <select name="month" onchange="this.form.submit()">
         <option value="all">全部</option>
         <option value="01" {{#if (same month '01' )}} selected {{/if}}>一月
@@ -55,7 +54,8 @@
     {{#each records}}
       <div class="group">
         <div class="category"><i class="{{  this.categoryIcon  }}"></i></div>
-        <div class="name text-center">{{ this.name }}<br />({{ this.merchant }})
+        <div class="name text-center">{{ this.name }}<br />({{ this.merchant
+          }})
         </div>
         <div class="date">{{ this.date }}</div>
         <div class="amount">${{ this.amount }}</div>

@@ -19,7 +19,6 @@
 15. Passport-local : v1.0.0
 16. Tailwindcss : v2.0.3
 17. Passport-Google-Oauth20 : v2.0.0
-18. Date-Fns : v2.19.0
 
 ## 安裝與執行步驟 (Installation and Execution)
 

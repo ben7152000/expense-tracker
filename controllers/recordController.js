@@ -2,9 +2,6 @@
 const Record = require('../models/record')
 const Category = require('../models/category')
 
-// utils
-const { dateFormat } = require('../utils/dateformat')
-
 // record control
 const recordController = {
 
@@ -104,49 +101,53 @@ const recordController = {
     }
   },
 
-  // 類別篩選
+  // 篩選
   filterRecord: async (req, res) => {
     let totalAmount = 0
     const userId = req.user._id
-    const filter = req.query.filter
-    try {
-      const categories = await Category.find().lean().exec()
-      if (filter === 'all') return res.redirect('/records')
-      const records = await Record.find({ category: filter, userId }).lean().exec()
-      for (const record of records) {
-        totalAmount += record.amount
-        for (const icon of categories) {
-          if (icon.name === record.category) record.categoryIcon = icon.icon
-        }
-      }
-      res.render('../views/records/index', { totalAmount, records, filter })
-    } catch (e) {
-      console.log(e)
-      res.render('../views/error/index')
-    }
-  },
-
-  // 月份篩選
-  monthRecord: async (req, res) => {
-    let totalAmount = 0
-    const userId = req.user._id
+    const category = req.query.category
     const month = req.query.month
-    const newRecords = []
+    const newRecord = []
     try {
       const categories = await Category.find().lean().exec()
-      if (month === 'all') return res.redirect('/records')
-      const records = await Record.find({ userId }).lean().exec()
-      for (const record of records) {
-        const newDate = dateFormat(record.date)
-        if (month === newDate) {
+      if (category === 'all' && month === 'all') {
+        return res.redirect('/records')
+      } else if (month === 'all') {
+        const records = await Record.find({ category, userId }).lean().exec()
+        for (const record of records) {
           totalAmount += record.amount
           for (const icon of categories) {
             if (icon.name === record.category) record.categoryIcon = icon.icon
           }
-          newRecords.push(record)
         }
+        return res.render('../views/records/index', { totalAmount, records, category })
+      } else if (category === 'all') {
+        const records = await Record.find({ userId }).lean().exec()
+        for (const record of records) {
+          const newMonth = record.date.split('-')[1]
+          if (month === newMonth) {
+            totalAmount += record.amount
+            for (const icon of categories) {
+              if (icon.name === record.category) record.categoryIcon = icon.icon
+            }
+            newRecord.push(record)
+          }
+        }
+        return res.render('../views/records/index', { totalAmount, records: newRecord, month })
+      } else {
+        const records = await Record.find({ category, userId }).lean().exec()
+        for (const record of records) {
+          const newMonth = record.date.split('-')[1]
+          if (month === newMonth) {
+            totalAmount += record.amount
+            for (const icon of categories) {
+              if (icon.name === record.category) record.categoryIcon = icon.icon
+            }
+            newRecord.push(record)
+          }
+        }
+        return res.render('../views/records/index', { totalAmount, records: newRecord, month, category })
       }
-      res.render('../views/records/index', { totalAmount, records: newRecords, month })
     } catch (e) {
       console.log(e)
       res.render('../views/error/index')
