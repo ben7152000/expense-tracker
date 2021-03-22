@@ -24,45 +24,37 @@ const userController = {
 
   // 註冊使用者資料
   register: async (req, res) => {
-    const { name, email, password, confirmPassword } = req.body
+    const user = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      confirmPassword: req.body.confirmPassword
+    }
     const errors = []
-    if (!name || !email || !password || !confirmPassword) {
+    if (!user.name || !user.email || !user.password || !user.confirmPassword) {
       errors.push({ message: '所有欄位都是必填。' })
+      return res.render('../views/users/register', { errors, user })
     }
-    if (!email.match(/.+@.+\..+/)) {
+    if (!user.email.match(/.+@.+\..+/)) {
       errors.push({ message: '請填入正確的信箱' })
+      return res.render('../views/users/register', { errors, user })
     }
-    if (!password.match(/.{8,}/)) {
-      errors.push({ message: '密碼需要8位' })
-    }
-    if (password !== confirmPassword) {
+    if (user.password !== user.confirmPassword) {
       errors.push({ message: '密碼與確認密碼不相符！' })
-    }
-    if (errors.length) {
-      return res.render('../views/users/register', {
-        errors,
-        name,
-        email,
-        password,
-        confirmPassword
-      })
+      return res.render('../views/users/register', { errors, user })
     }
     try {
-      const user = await User.findOne({ email })
-      if (user) {
+      const getUser = await User.findOne({ email: user.email })
+      if (getUser) {
         errors.push({ message: '這個帳號已經註冊過了。' })
         console.log('User already exists')
-        return res.render('../views/users/register', {
-          errors,
-          name,
-          email
-        })
+        return res.render('../views/users/register', { errors, getUser })
       }
       const salt = await bcrypt.genSalt(10)
-      const hashPassword = await bcrypt.hash(password, salt)
+      const hashPassword = await bcrypt.hash(getUser.password, salt)
       User.create({
-        name,
-        email,
+        name: getUser.name,
+        email: getUser.email,
         password: hashPassword
       })
       res.redirect('login')

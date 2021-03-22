@@ -23,6 +23,10 @@ const checkAccount = (req, res, next) => {
     req.flash('warning_msg', '請輸入密碼')
     return next()
   }
+  if (!email) {
+    req.flash('warning_msg', '請輸入帳號')
+    return next()
+  }
   return next()
 }
 

@@ -12,7 +12,7 @@ const googleController = require('../controllers/googleController')
 const { checkAuthenticator, checkNotAuthenticated, checkAccount } = require('../middlewares/auth')
 
 // home
-router.get('/', (req, res) => res.redirect('/users/login'))
+router.get('/', checkNotAuthenticated, (req, res) => res.redirect('/users/login'))
 
 // record
 router.get('/records', checkAuthenticator, recordController.getRecords)
@@ -24,7 +24,7 @@ router.post('/records/:id/delete', checkAuthenticator, recordController.deleteRe
 router.get('/records/filter', checkAuthenticator, recordController.filterRecord)
 
 // users
-router.get('/users/login', userController.loginPage, checkNotAuthenticated)
+router.get('/users/login', checkNotAuthenticated, userController.loginPage)
 router.post('/users/login', checkAccount, userController.login)
 router.get('/users/register', userController.registerPage)
 router.post('/users/register', userController.register)
