@@ -17,7 +17,7 @@
 13. Passport : v0.4.1
 14. Passport-Facebook : v3.0.0
 15. Passport-local : v1.0.0
-16. Tailwindcss : v2.0.3
+16. TailWindCss : v2.0.3
 17. Passport-Google-Oauth20 : v2.0.0
 
 ## 安裝與執行步驟 (Installation and Execution)
