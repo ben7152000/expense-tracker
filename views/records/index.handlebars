@@ -51,6 +51,12 @@
     </form>
   </div>
   <div class="container">
+    {{#if isShow}}
+      <h1
+        class="flex justify-center items-center w-full h-32 text-3xl font-semibold text-gray-700 tracking-wide">
+        尚無新增任何支出
+      </h1>
+    {{/if}}
     {{#each records}}
       <div class="group">
         <div class="category"><i class="{{  this.categoryIcon  }}"></i></div>

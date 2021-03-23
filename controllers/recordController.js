@@ -12,13 +12,16 @@ const recordController = {
     try {
       const categories = await Category.find().lean().exec()
       const records = await Record.find({ userId }).lean().exec()
+      if (records[0] === undefined) {
+        return res.render('../views/records/index', { isShow: true })
+      }
       for (const record of records) {
         totalAmount += record.amount
         for (const icon of categories) {
           if (icon.name === record.category) record.categoryIcon = icon.icon
         }
       }
-      res.render('../views/records/index', { totalAmount, records })
+      res.render('../views/records/index', { totalAmount, records, isShow: false })
     } catch (e) {
       console.log(e)
       res.render('../views/error/index')
